@@ -1,0 +1,11 @@
+services:
+  mqtt:
+    build: .
+    restart: unless-stopped
+    environment:
+      - MQTT_USER=${MQTT_USER:-}
+      - MQTT_PASS=${MQTT_PASS:-}
+    ports:
+      - "1883:1883"   # MQTT TCP
+    expose:
+      - "8883"        # MQTT sobre WebSocket (Coolify/Traefik le asigna dominio)
